@@ -1,0 +1,12 @@
+{
+    "organization": "TU_ORGANIZACION_AZURE_DEVOPS",
+    "project": "TU_PROYECTO",
+    "user_email": "tu.correo@empresa.com",
+    "user_name": "Tu Nombre Completo",
+    "default_tipo_ejecucion": "Manual",
+    "default_fase": "Construcción",
+    "default_nivel_prueba": "Integración",
+    "max_tcs_hu": 4,
+    "max_tcs_ht": 3,
+    "modulo_default": "Nombre del modulo principal"
+}

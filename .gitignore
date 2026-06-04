@@ -1,0 +1,58 @@
+﻿# ========================================
+# ARCHIVOS SENSIBLES - NUNCA SUBIR
+# ========================================
+
+# Config personal (cada usuario debe crear el suyo)
+config.json
+
+# Archivos generados con info interna de Sura
+WI_*.md
+TCs_HU_*.md
+TCs_HT_*.md
+campos_tc_referencia.json
+
+# Variables de entorno y secrets
+.env
+*.key
+*.pem
+*.pat
+
+# ========================================
+# ARCHIVOS DE PYTHON
+# ========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# ========================================
+# IDEs Y EDITORES
+# ========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ========================================
+# SISTEMA OPERATIVO
+# ========================================
+.DS_Store
+Thumbs.db
+desktop.ini
