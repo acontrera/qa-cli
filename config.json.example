@@ -8,5 +8,6 @@
     "default_nivel_prueba": "Integración",
     "max_tcs_hu": 4,
     "max_tcs_ht": 3,
-    "modulo_default": "Nombre del modulo principal"
+    "modulo_default": "Nombre del modulo principal",
+    "output_dir": "output"
 }

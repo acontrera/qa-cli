@@ -28,6 +28,7 @@ import json
 import time
 import subprocess
 import platform
+import shutil
 from datetime import datetime
 from getpass import getpass
 
@@ -54,6 +55,34 @@ MAX_TCS_HT = CONFIG.get("max_tcs_ht", 3)
 DEFAULT_TIPO_EJECUCION = CONFIG.get("default_tipo_ejecucion", "Manual")
 DEFAULT_FASE = CONFIG.get("default_fase", "Construcción")
 DEFAULT_NIVEL_PRUEBA = CONFIG.get("default_nivel_prueba", "Integración")
+
+# Carpeta base para archivos generados (configurable en config.json)
+OUTPUT_BASE = CONFIG.get("output_dir", "output")
+
+
+def carpeta_salida():
+    """Devuelve (y crea si no existe) la carpeta de salida del dia: output/YYYY-MM-DD/"""
+    carpeta = os.path.join(OUTPUT_BASE, datetime.now().strftime("%Y-%m-%d"))
+    os.makedirs(carpeta, exist_ok=True)
+    return carpeta
+
+
+def archivar(*archivos):
+    """Mueve los archivos generados (WI_x.md, TCs_HU_x.md) a output/<fecha>/.
+
+    Se ejecuta al final de cada HU para mantener el root del workspace limpio.
+    Copilot sigue escribiendo en el root (el polling depende de eso); aqui
+    solo se archivan una vez termina el proceso.
+    """
+    destino = carpeta_salida()
+    for archivo in archivos:
+        if archivo and os.path.exists(archivo):
+            destino_final = os.path.join(destino, os.path.basename(archivo))
+            if os.path.exists(destino_final):
+                os.remove(destino_final)
+            shutil.move(archivo, destino_final)
+            print(f"        Archivado: {destino_final}")
+
 
 BASE = f"https://dev.azure.com/{ORG}"
 
@@ -499,6 +528,9 @@ def main():
         except Exception as e:
             print(f"[ERROR] HU #{hu_id}: {e}")
             fallidos.append(hu_id)
+        finally:
+            # Archivar los .md generados para mantener el root limpio
+            archivar(f"WI_{hu_id}.md", f"TCs_HU_{hu_id}.md")
 
     # Resumen global
     duracion = int(time.time() - inicio)

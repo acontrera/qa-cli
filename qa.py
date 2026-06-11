@@ -279,6 +279,13 @@ def abrir_en_vscode(archivo):
         print(f"[INFO] Para abrir manualmente: code {archivo}")
 
 
+def carpeta_salida():
+    """Devuelve (y crea si no existe) la carpeta de salida del dia: output/YYYY-MM-DD/"""
+    carpeta = os.path.join("output", datetime.now().strftime("%Y-%m-%d"))
+    os.makedirs(carpeta, exist_ok=True)
+    return carpeta
+
+
 # ============================================================
 # MENU PRINCIPAL
 # ============================================================
@@ -320,7 +327,7 @@ def main():
     if op == "1":
         # Solo este item
         md = generar_md_individual(item)
-        archivo = f"WI_{wid}.md"
+        archivo = os.path.join(carpeta_salida(), f"WI_{wid}.md")
     else:
         # Padre + hijos
         print(f"[INFO] Buscando hijos del WI #{wid}...")
@@ -332,7 +339,7 @@ def main():
             print(f"[OK] {len(ids_hijos)} hijos encontrados. Descargando...")
             hijos = obtener_varios(ids_hijos)
             md = generar_md_padre_e_hijos(item, hijos)
-        archivo = f"WI_{wid}_completo.md"
+        archivo = os.path.join(carpeta_salida(), f"WI_{wid}_completo.md")
 
     # Guardar
     with open(archivo, "w", encoding="utf-8") as f:
