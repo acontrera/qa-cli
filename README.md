@@ -1,130 +1,198 @@
-﻿# QA-CLI - Fábrica automatizada de Test Cases para Azure DevOps
+# qa-cli — Toolkit de QA para Azure DevOps
 
-Comando único en Python para generar Test Cases en Azure DevOps usando GitHub Copilot, siguiendo formato Gherkin BDD.
+Automatización de tareas QA sobre Azure DevOps (ADO) para proyectos de la Gerencia de Tecnología.
 
-> Creado por un QA Lead con 15+ años de experiencia para acelerar la generación de test cases en equipos ágiles trabajando con Azure DevOps.
+---
 
-## Características
+## Requisitos
 
-- 🤖 Genera test cases usando GitHub Copilot (sin pagar APIs adicionales)
-- 📋 Formato Gherkin BDD (Given/When/Then) estándar
-- 🔗 Sube automáticamente los TCs a Azure DevOps como hijos de la HU/HT
-- 👤 Multi-usuario (cada miembro del equipo con su propia configuración)
-- 📦 Procesamiento individual o en lote
-- ⚡ Reducción de ~85% en tiempo vs creación manual
+- Python 3.x (`py` command)
+- Variables de entorno configuradas:
+  ```powershell
+  $env:AZURE_DEVOPS_PAT = "tu-pat-de-ado"
+  ```
+- Dependencias:
+  ```powershell
+  py -m pip install requests anthropic --user
+  ```
 
-## Requisitos previos
+---
 
-- Python 3.10+
-- VS Code + GitHub Copilot Chat
-- Acceso a Azure DevOps
-- PAT (Personal Access Token) con permisos: Work Items, Test Management
+## Configuración
 
-## Instalación
+Edita `config.json` con tus datos:
 
-### 1. Clonar el repositorio
-
-```bash
-git clone https://github.com/TU_USUARIO/qa-cli.git
-cd qa-cli
+```json
+{
+    "organization":           "SuraColombia",
+    "project":                "Gerencia_Tecnologia",
+    "user_email":             "tu.email@sura.com.co",
+    "user_name":              "Tu Nombre Completo",
+    "default_tipo_ejecucion": "Manual",
+    "default_fase":           "Construcción",
+    "default_nivel_prueba":   "Integración",
+    "max_tcs_hu":             4,
+    "max_tcs_ht":             3,
+    "modulo_default":         "Salud Web",
+    "output_dir":             "output"
+}
 ```
 
-### 2. Instalar dependencias
+---
 
-```bash
-pip install requests --user
-```
+## Scripts principales
 
-### 3. Configurar tu usuario
+### `qa-cli.py` — Generar y subir Test Cases
 
-Copia la plantilla y edítala con tus datos:
-
-```bash
-cp config.json.example config.json
-```
-
-Abre `config.json` y completa:
-- `organization`: tu organización en Azure DevOps
-- `project`: tu proyecto
-- `user_email`: tu correo corporativo
-- `user_name`: tu nombre completo
-
-### 4. Configurar PAT como variable de entorno
+Genera Casos de Prueba en formato Gherkin a partir de una HU o HT y los sube a ADO.
 
 ```powershell
-# Windows PowerShell
-[System.Environment]::SetEnvironmentVariable("AZURE_DEVOPS_PAT", "tu-pat-aqui", "User")
+# Modo interactivo
+py qa-cli.py
+
+# Con ID de HU directo
+py qa-cli.py --hu 123456
+
+# Modo automático con IA (requiere ANTHROPIC_API_KEY)
+py qa-cli.py --hu 123456 --auto
 ```
 
-```bash
-# Linux/Mac
-export AZURE_DEVOPS_PAT="tu-pat-aqui"
+**Flujo:**
+1. Lee la HU/HT desde ADO (título + descripción + criterios de aceptación)
+2. Genera archivo `output/TCs_HU_XXXXXX.md` con los TCs en Gherkin
+3. Valida calidad del Gherkin antes de subir
+4. Sube los TCs a ADO como hijos de la HU/HT
+5. Registra en `output/registro.csv`
+
+---
+
+### `crear_bug.py` — Crear Bugs desde un Test Case fallido
+
+Crea un Bug en ADO leyendo el Gherkin de un TC existente. Deriva automáticamente
+descripción, datos de prueba, pasos y resultado esperado del TC.
+
+```powershell
+# Modo interactivo
+py crear_bug.py
+
+# Con ID de TC directo
+py crear_bug.py --tc 123456
+
+# Dry-run (solo preview, no crea nada en ADO)
+py crear_bug.py --tc 123456 --dry-run
+
+# Completo por argumentos
+py crear_bug.py --tc 123456 --dev "email@sura.com.co" --fallo "El endpoint retorna 500"
 ```
 
-Cierra y reabre la terminal.
+**Flujo:**
+1. Lee el TC desde ADO (título + Gherkin + HT padre)
+2. Hereda AreaPath e IterationPath de la HT padre
+3. Pide: desarrollador (email), qué está fallando, severidad, bloqueante, nivel prueba, etapa, causa raíz, ID APM
+4. Construye todos los campos del bug desde el Gherkin del TC:
+   - `Given` → Datos de prueba
+   - `When`  → Pasos para reproducir
+   - `Then`  → Resultado esperado
+5. Muestra preview completo y pide confirmación
+6. Crea el Bug en ADO vinculado al TC
+7. Registra en `output/registro_bugs.csv`
 
-### 5. Configurar las instrucciones de Copilot
+**Campos que llena automáticamente:**
 
-Asegúrate de tener el archivo `.github/copilot-instructions.md` con las reglas de formato Gherkin de tu organización.
+| Campo ADO | Fuente |
+|---|---|
+| Título | `[BUG]` + título del TC |
+| Descripción | Fallo + escenario + resultado esperado vs obtenido |
+| Datos de prueba | Líneas `Given` del Gherkin |
+| Pasos para reproducir | Fallo + líneas `When` del Gherkin |
+| Resultado esperado | Líneas `Then` del Gherkin |
+| Área / Iteración | Heredados de la HT padre |
+| Atributo de calidad | Funcional (default) |
+| Origen | Manual (default) |
 
-## Uso
+---
 
-### Procesar una HU/HT
+### `contar_historial.py` — Contar TCs generados localmente
 
-```bash
-py qa-cli.py 12345
+Cuenta los Casos de Prueba en los archivos `.md` del workspace.
+
+```powershell
+py contar_historial.py
+py contar_historial.py --detalle
+py contar_historial.py --ruta "C:\ruta\alternativa\output"
 ```
 
-### Procesar varias HUs en lote
+---
 
-```bash
-py qa-cli.py 12345 12346 12347
-```
+## Scripts de diagnóstico (`scripts/`)
 
-### Flujo automático
-[1/4] Descarga la HU/HT de Azure DevOps
-[2/4] Prepara el prompt para Copilot (en tu portapapeles)
-[3/4] PAUSA: pegas en Copilot Chat y dejas que genere los TCs
-[4/4] Sube los TCs a Azure DevOps (asignados a ti)
-
-## Scripts disponibles
+Utilidades para descubrir campos y valores de ADO. Útiles cuando un campo
+falla con error 400.
 
 | Script | Propósito |
 |---|---|
-| `qa-cli.py` | ⭐ Comando principal todo-en-uno |
-| `qa.py` | Descarga una HU/work item individual |
-| `subir_tcs.py` | Sube TCs desde un .md (uso aislado) |
-| `asignar_tcs.py` | Asigna TCs a un usuario |
-| `reparar_vinculos.py` | Mueve TCs entre padres |
-| `descubrir_campos.py` | Debug: lista campos custom |
-| `descubrir_valores.py` | Debug: lista valores permitidos |
+| `check_vals.py` | Lista valores permitidos de campos custom del Bug |
+| `check_sev.py` | Consulta el campo Severity en ADO |
+| `check_causa.py` | Consulta valores del campo Causa raíz |
+| `check_user.py` | Verifica con qué usuario está autenticado el PAT |
 
-## Estructura de un Test Case generado
+```powershell
+py scripts/check_vals.py
+py scripts/check_user.py
+```
 
-Cada TC se crea como hijo directo de la HU/HT con:
+---
 
-- **Title**: descriptivo en español
-- **Description**: bloque Gherkin completo
-  - Feature: descripción del módulo
-  - Scenario: caso específico
-  - Steps: Given/When/Then/And (keywords inglés, contenido español)
-- **Campos custom**: Tipo ejecución, Fase, Nivel de prueba, Prioridad
+## Estructura del workspace
 
-## Reglas aplicadas
+```
+AzureBoards-Workspace/
+├── .github/                  # Instrucciones para GitHub Copilot
+├── output/
+│   ├── YYYY-MM-DD/           # TCs generados por fecha
+│   ├── historial/            # TCs archivados
+│   ├── work_items/           # Work items descargados
+│   ├── registro.csv          # Historial de TCs subidos a ADO
+│   └── registro_bugs.csv     # Historial de Bugs creados en ADO
+├── scripts/                  # Utilidades de diagnóstico ADO
+├── config.json               # Configuración del proyecto (no commitear)
+├── config.json.example       # Plantilla de configuración
+├── contar_historial.py       # Conteo local de TCs
+├── crear_bug.py              # Creación de Bugs desde TCs
+├── qa-cli.py                 # Generación y subida de TCs
+├── qa.py                     # Módulo de utilidades QA
+└── README.md
+```
 
-- HU: máximo 4 TCs
-- HT: máximo 3 TCs
-- Asignación automática al usuario configurado
-- Vinculación como hijo directo (no a través de contenedores intermedios)
+---
 
-## Contribuir
+## Valores de referencia ADO (Sura)
 
-Pull requests bienvenidos. Para cambios mayores, abre un issue primero para discutir el cambio.
+### Bug — campos y valores permitidos
 
-## Licencia
+| Campo | Valores |
+|---|---|
+| Severidad | `1. Crítica` / `2. Media` / `3. Baja` |
+| ¿Bloqueante? | `Sí` / `No` |
+| Atributo de calidad | `Compatibilidad` / `Desempeño` / `Fiabilidad` / `Funcional` / `Usabilidad` |
+| Nivel prueba | `Aceptación` / `E2E` / `Integración` / `Sistema` |
+| Etapa de descubrimiento | `Certificación` / `Exploración` / `Post-implantación` / `Regresión` |
+| Origen | `Automatizado` / `Híbrido` / `Manual` |
 
-MIT
+### Test Case — campos custom
 
-## Autor
+| Campo | Reference Name |
+|---|---|
+| Tipo de ejecución | `Custom.886da9bd-...` |
+| Prioridad de caso | `Custom.Prioridaddecaso` |
 
-Andrés Felipe Contreras Muñoz - QA / Quality Engineering Lead
+---
+
+## Flujo recomendado por sprint
+
+```
+1. py qa-cli.py          → generar TCs para las HUs del sprint
+2. py contar_historial.py → verificar conteo local
+3. (ejecutar pruebas en ADO)
+4. py crear_bug.py        → registrar bugs de TCs fallidos
+```
