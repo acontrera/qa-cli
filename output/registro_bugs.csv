@@ -1,2 +1,3 @@
 Fecha;BUG_ID;Titulo;TC_ID;HT_ID;Desarrollador
 2026-06-17 18:40;1178132;[BUG] Consulta de registros almacenados refleja el estado real del envío;1163477;1129613;dmeneses@sura.com.co
+2026-06-19 08:12;1179420;[BUG] Registro de error y reintento cuando falla la persistencia de factura Póliza;1161598;1129581;lrodrigueze@sura.com.co
