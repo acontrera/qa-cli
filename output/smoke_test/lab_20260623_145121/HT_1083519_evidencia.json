@@ -1,0 +1,28 @@
+{
+  "ht_id": 1083519,
+  "nombre": "Reiteracion EPS - PUT",
+  "ambiente": "lab",
+  "timestamp": "2026-06-23T14:51:24.848985",
+  "request": {
+    "method": "PUT",
+    "url": "https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/reiteraciones",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-apikey": "***",
+      "Business-Line": "890903790"
+    },
+    "body": {
+      "idSeguimientoFacturaGlosa": 1,
+      "idSeguimientoTipoCodigoGlosaReiteracion": "GRE003",
+      "fechaFormulacionGlosaReiteracion": "2026-04-15T10:00:00Z",
+      "observacionReiteracion": "Se reitera la glosa debido a que persiste la inconsistencia en la documentacion"
+    }
+  },
+  "response": {
+    "status_code": 400,
+    "duracion_ms": 1046,
+    "body": "{\"errors\":[{\"id\":\"400\",\"type\":\"400\",\"message\":\"\",\"detail\":\"Error\",\"fields\":{\"FechaFormulacionGlosaReiteracion\":[\"La fecha de formulación de glosa reiteración debe ser posterior a la fecha de respuesta de la glosa o no existe previamente una respuesta a la glosa.\"]}}]}",
+    "error": null
+  },
+  "resultado": "[WARN 400]"
+}

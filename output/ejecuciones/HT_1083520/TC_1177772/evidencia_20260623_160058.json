@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "tc_id": 1177772,
+    "tc_title": "Respuesta vacia cuando la factura radicada no tiene glosas registradas",
+    "ht_id": 1083520,
+    "ejecutor": "si",
+    "ambiente": "lab",
+    "timestamp": "2026-06-23T16:00:58.943102",
+    "fecha_legible": "23/06/2026 16:00:58"
+  },
+  "request": {
+    "method": "GET",
+    "url": "https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/118524656",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-apikey": "***",
+      "Business-Line": "860005114"
+    },
+    "body": null
+  },
+  "response": {
+    "status_code": null,
+    "duracion_ms": 0,
+    "body": "[DRY-RUN] No se ejecuto realmente",
+    "headers": {},
+    "error": null
+  },
+  "expected": {
+    "status_pass": [
+      200
+    ]
+  }
+}

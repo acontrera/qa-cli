@@ -1,0 +1,28 @@
+{
+  "ht_id": 1083518,
+  "nombre": "Respuesta Prestacion - PUT",
+  "ambiente": "lab",
+  "timestamp": "2026-06-23T14:51:23.788231",
+  "request": {
+    "method": "PUT",
+    "url": "https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/respuestas",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-apikey": "***",
+      "Business-Line": "860005114"
+    },
+    "body": {
+      "idSeguimientoFacturaGlosa": 5280,
+      "idSeguimientoTipoCodigoRespuesta": "RE9502",
+      "fechaRespuesta": "2026-04-15T14:00:00Z",
+      "observacionRespuesta": "La glosa ha sido aceptada y se procedera con el ajuste correspondiente"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "duracion_ms": 1348,
+    "body": "{\"idSeguimientoFacturaGlosa\":5280}",
+    "error": null
+  },
+  "resultado": "[OK 200]"
+}

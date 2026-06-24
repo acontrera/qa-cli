@@ -1,0 +1,85 @@
+{
+  "metadata": {
+    "tc_id": 1177772,
+    "tc_title": "Respuesta vacia cuando la factura radicada no tiene glosas registradas",
+    "ht_id": 1083520,
+    "ejecutor": "andres contreras",
+    "ambiente": "lab",
+    "escenario": "happy_path_empty",
+    "descripcion_caso": "Respuesta vacia cuando la factura radicada no tiene glosas registradas",
+    "timestamp": "2026-06-23T20:47:06.651118",
+    "fecha_legible": "23/06/2026 20:47:06",
+    "version_ejecutor": "v3.0"
+  },
+  "request": {
+    "method": "GET",
+    "url": "https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/99999999",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-apikey": "***",
+      "Business-Line": "860005114"
+    },
+    "body": null,
+    "escenario": "happy_path_empty"
+  },
+  "response": {
+    "status_code": 200,
+    "duracion_ms": 565,
+    "body": "{\"paginaActual\":1,\"registrosPorPagina\":10,\"totalRegistros\":0,\"totalPaginas\":0,\"resultado\":[]}",
+    "body_full_length": 93,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "date": "Wed, 24 Jun 2026 01:47:06 GMT",
+      "cache-control": "no-store",
+      "x-frame-options": "DENY",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "x-content-type-options": "nosniff",
+      "request-context": "appId=cid-v1:2156ef92-866c-4e6e-a5b7-16e25463a3e9",
+      "x-permitted-cross-domain-policies": "none",
+      "pragma": "no-cache",
+      "x-xss-protection": "1; mode=block",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "Content-Length": "93",
+      "content-security-policy": "base-uri 'self'; default-src 'self'; script-src 'self'; img-src 'self'; connect-src 'self'",
+      "permissions-policy": "geolocation=(), microphone=(), camera=()",
+      "set-cookie": "; Secure; HttpOnly; SameSite=Strict; Secure; HttpOnly; SameSite=Strict",
+      "x-request-id": "608b9ed0-527a-4be3-9e2d-5c9d15193eef",
+      "via": "1.1 google",
+      "Alt-Svc": "h3=\":443\"; ma=2592000"
+    },
+    "error": null
+  },
+  "validaciones": [
+    {
+      "nombre": "Conexion al endpoint",
+      "esperado": "Sin errores de red",
+      "obtenido": "Conexion exitosa",
+      "paso": true
+    },
+    {
+      "nombre": "HTTP Status segun TC",
+      "esperado": "En [200, 204, 404]",
+      "obtenido": "200",
+      "paso": true
+    },
+    {
+      "nombre": "Tiempo < 3000ms",
+      "esperado": "< 3000ms",
+      "obtenido": "565ms",
+      "paso": true
+    },
+    {
+      "nombre": "Response es JSON valido",
+      "esperado": "JSON parseable",
+      "obtenido": "JSON valido",
+      "paso": true
+    },
+    {
+      "nombre": "Items <= 0",
+      "esperado": "<= 0 items",
+      "obtenido": "0 items",
+      "paso": true
+    }
+  ],
+  "resultado_global": "PASS"
+}

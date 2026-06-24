@@ -1,0 +1,126 @@
+{
+    "ambientes": {
+        "dev": {
+            "nombre": "Desarrollo",
+            "host": "apiinternal.dllosura.com",
+            "requiere_vpn": true,
+            "apikey_env": "SURA_APIKEY_DEV"
+        },
+        "lab": {
+            "nombre": "Laboratorio",
+            "host": "api.labsura.com",
+            "requiere_vpn": false,
+            "apikey_env": "SURA_APIKEY_LAB"
+        }
+    },
+    "datos_prueba": {
+        "factura_con_glosas": "118524656",
+        "factura_sin_glosas": "99999999",
+        "factura_inexistente": "00000000",
+        "seguimiento_valido": 5280,
+        "seguimiento_inexistente": 99999,
+        "business_line_eps": "890903790",
+        "business_line_prestacion": "860005114"
+    },
+    "tcs": {
+        "1177770": {
+            "ht_id": 1083520,
+            "descripcion": "Consulta exitosa de seguimientos con filtros tecnicos por IdFactura",
+            "escenario": "happy_path",
+            "method": "GET",
+            "path_template": "/siifaintegrador/v1/facturas-glosas/seguimientos/{idFactura}",
+            "path_params": {"idFactura": "factura_con_glosas"},
+            "query_params": {},
+            "headers_extra": {"Business-Line": "860005114"},
+            "apikey_tipo": "valida",
+            "body": null,
+            "validaciones": {
+                "status_esperado": [200],
+                "tiempo_max_ms": 3000,
+                "body_es_json": true,
+                "body_min_length": 50,
+                "body_contiene": ["resultado"]
+            }
+        },
+        "1177771": {
+            "ht_id": 1083520,
+            "descripcion": "Denegacion de consulta cuando el token o roles no estan autorizados",
+            "escenario": "auth_invalid",
+            "method": "GET",
+            "path_template": "/siifaintegrador/v1/facturas-glosas/seguimientos/{idFactura}",
+            "path_params": {"idFactura": "factura_con_glosas"},
+            "query_params": {},
+            "headers_extra": {"Business-Line": "860005114"},
+            "apikey_tipo": "invalida",
+            "body": null,
+            "validaciones": {
+                "status_esperado": [401, 403],
+                "tiempo_max_ms": 3000,
+                "body_es_json": true,
+                "body_contiene_alguno": ["Credencial", "Authentication", "Autenticación", "Autorización", "unauthorized", "forbidden", "Invalid", "denied", "incorrecta", "faltante"]
+            }
+        },
+        "1177772": {
+            "ht_id": 1083520,
+            "descripcion": "Respuesta vacia cuando la factura radicada no tiene glosas registradas",
+            "escenario": "happy_path_empty",
+            "method": "GET",
+            "path_template": "/siifaintegrador/v1/facturas-glosas/seguimientos/{idFactura}",
+            "path_params": {"idFactura": "factura_sin_glosas"},
+            "query_params": {},
+            "headers_extra": {"Business-Line": "860005114"},
+            "apikey_tipo": "valida",
+            "body": null,
+            "validaciones": {
+                "status_esperado": [200, 204, 404],
+                "tiempo_max_ms": 3000,
+                "body_es_json": true,
+                "body_max_items": 0
+            }
+        },
+        "1177775": {
+            "ht_id": 1083521,
+            "descripcion": "Registro exitoso de respuesta a reiteracion con auditoria automatica",
+            "escenario": "happy_path",
+            "method": "PUT",
+            "path_template": "/siifaintegrador/v1/facturas-glosas/seguimientos/reiteraciones/respuestas",
+            "path_params": {},
+            "query_params": {},
+            "headers_extra": {"Business-Line": "860005114"},
+            "apikey_tipo": "valida",
+            "body": {
+                "idSeguimientoFacturaGlosa": 1,
+                "idSeguimientoTipoCodigoGlosaReiteracionRespuesta": "RE9602",
+                "observacionReiteracionRespuesta": "La reiteracion ha sido evaluada",
+                "fechaFormulacionGlosaReiteracionRespuesta": "2026-04-16T14:00:00Z"
+            },
+            "validaciones": {
+                "status_esperado": [200, 201],
+                "tiempo_max_ms": 3000,
+                "body_es_json": true
+            }
+        },
+        "1177776": {
+            "ht_id": 1083521,
+            "descripcion": "Rechazo de la operacion cuando el rol del token no esta autorizado",
+            "escenario": "auth_invalid",
+            "method": "PUT",
+            "path_template": "/siifaintegrador/v1/facturas-glosas/seguimientos/reiteraciones/respuestas",
+            "path_params": {},
+            "query_params": {},
+            "headers_extra": {"Business-Line": "860005114"},
+            "apikey_tipo": "invalida",
+            "body": {
+                "idSeguimientoFacturaGlosa": 1,
+                "idSeguimientoTipoCodigoGlosaReiteracionRespuesta": "RE9602",
+                "observacionReiteracionRespuesta": "test",
+                "fechaFormulacionGlosaReiteracionRespuesta": "2026-04-16T14:00:00Z"
+            },
+            "validaciones": {
+                "status_esperado": [401, 403],
+                "tiempo_max_ms": 3000,
+                "body_contiene_alguno": ["unauthorized", "forbidden", "denied"]
+            }
+        }
+    }
+}

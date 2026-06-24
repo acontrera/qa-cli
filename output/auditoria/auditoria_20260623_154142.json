@@ -1,0 +1,350 @@
+{
+  "1083516": {
+    "padre_title": "HT - Crear Proxy y Endpoints Entrada InicioGlosasFactura Integrador",
+    "tcs": [
+      {
+        "id": 1086080,
+        "title": "Disparo y ejecución exitosa del integrador de glosas",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Ricardo Bolivar Zamudio",
+        "created_date": "2026-03-20",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": false,
+        "tiene_metodo_http": false,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [],
+        "metodos_detectados": [],
+        "longitud_desc": 629
+      },
+      {
+        "id": 1144303,
+        "title": "Validación de errores en el disparo y ejecución",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Hamilton Tabares Villada",
+        "created_date": "2026-05-12",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": false,
+        "tiene_metodo_http": false,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [],
+        "metodos_detectados": [],
+        "longitud_desc": 544
+      }
+    ]
+  },
+  "1083517": {
+    "padre_title": "HT - Crear Proxy SeguimientoFacturaGlosa EPS POST",
+    "tcs": [
+      {
+        "id": 1086073,
+        "title": "Registro de glosas vía proxy técnico SIIFA",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Ricardo Bolivar Zamudio",
+        "created_date": "2026-03-20",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa"
+        ],
+        "metodos_detectados": [
+          "POST"
+        ],
+        "longitud_desc": 940
+      },
+      {
+        "id": 1155977,
+        "title": "Error al registrar glosa por datos incompletos",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Hamilton Tabares Villada",
+        "created_date": "2026-05-26",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa"
+        ],
+        "metodos_detectados": [
+          "POST"
+        ],
+        "longitud_desc": 523
+      }
+    ]
+  },
+  "1083518": {
+    "padre_title": "HT - Crear Proxy SeguimientoFacturaGlosa/Respuesta Prestación PUT",
+    "tcs": [
+      {
+        "id": 1086066,
+        "title": "Respuesta a glosas vía proxy técnico SIIFA",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Ricardo Bolivar Zamudio",
+        "created_date": "2026-03-20",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa/respuesta",
+          "/ips/pts"
+        ],
+        "metodos_detectados": [
+          "PUT"
+        ],
+        "longitud_desc": 1085
+      },
+      {
+        "id": 1155990,
+        "title": "Error al responder una glosa inexistente o inválida",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Hamilton Tabares Villada",
+        "created_date": "2026-05-26",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa/respuesta",
+          "/ips/pts"
+        ],
+        "metodos_detectados": [
+          "PUT"
+        ],
+        "longitud_desc": 573
+      }
+    ]
+  },
+  "1083519": {
+    "padre_title": "HT - Crear Proxy SeguimientoFacturaGlosa/Reiteracion EPS PUT",
+    "tcs": [
+      {
+        "id": 1086059,
+        "title": "Reiteración de glosas vía proxy técnico SIIFA",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Ricardo Bolivar Zamudio",
+        "created_date": "2026-03-20",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa/reiteracion"
+        ],
+        "metodos_detectados": [
+          "PUT"
+        ],
+        "longitud_desc": 1108
+      },
+      {
+        "id": 1155999,
+        "title": "Error al intentar reiterar una glosa sin respuesta previa del prestador",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Hamilton Tabares Villada",
+        "created_date": "2026-05-26",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": false,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa/reiteracion"
+        ],
+        "metodos_detectados": [
+          "PUT"
+        ],
+        "longitud_desc": 539
+      }
+    ]
+  },
+  "1083520": {
+    "padre_title": "HT - Crear Proxy SeguimientoFacturaGlosas/ByIdFactura EPS GET para Procesos de Reconciliación",
+    "tcs": [
+      {
+        "id": 1086045,
+        "title": "Pruebas de calidad",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Ricardo Bolivar Zamudio",
+        "created_date": "2026-03-20",
+        "tiene_descripcion": true,
+        "tiene_gherkin": false,
+        "tiene_endpoint": false,
+        "tiene_metodo_http": false,
+        "tiene_status_code": false,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [],
+        "metodos_detectados": [],
+        "longitud_desc": 1
+      },
+      {
+        "id": 1177770,
+        "title": "Consulta exitosa de seguimientos de glosa con filtros técnicos por IdFactura",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Felipe Contreras Muñoz",
+        "created_date": "2026-06-17",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa/byidfactura"
+        ],
+        "metodos_detectados": [
+          "GET"
+        ],
+        "longitud_desc": 1024
+      },
+      {
+        "id": 1177771,
+        "title": "Denegación de consulta cuando el token o los roles no están autorizados",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Felipe Contreras Muñoz",
+        "created_date": "2026-06-17",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa/byidfactura"
+        ],
+        "metodos_detectados": [
+          "GET"
+        ],
+        "longitud_desc": 794
+      },
+      {
+        "id": 1177772,
+        "title": "Respuesta vacia cuando la factura radicada no tiene glosas registradas",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Felipe Contreras Muñoz",
+        "created_date": "2026-06-17",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa/byidfactura"
+        ],
+        "metodos_detectados": [
+          "GET"
+        ],
+        "longitud_desc": 709
+      }
+    ]
+  },
+  "1083521": {
+    "padre_title": "HT - Crear Proxy SeguimientoFacturaGlosa/ReiteracionRespuesta Prestación PUT",
+    "tcs": [
+      {
+        "id": 1086052,
+        "title": "Pruebas de calidad",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Ricardo Bolivar Zamudio",
+        "created_date": "2026-03-20",
+        "tiene_descripcion": true,
+        "tiene_gherkin": false,
+        "tiene_endpoint": false,
+        "tiene_metodo_http": false,
+        "tiene_status_code": false,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [],
+        "metodos_detectados": [],
+        "longitud_desc": 1
+      },
+      {
+        "id": 1177775,
+        "title": "Registro exitoso de respuesta a reiteracion con auditoria automatica de metadatos",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Felipe Contreras Muñoz",
+        "created_date": "2026-06-17",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa/reiteracionrespuesta"
+        ],
+        "metodos_detectados": [
+          "PUT"
+        ],
+        "longitud_desc": 1116
+      },
+      {
+        "id": 1177776,
+        "title": "Rechazo de la operacion cuando el rol del token no esta autorizado",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Felipe Contreras Muñoz",
+        "created_date": "2026-06-17",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": true,
+        "tiene_metodo_http": true,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [
+          "/api/seguimientofacturaglosa/reiteracionrespuesta"
+        ],
+        "metodos_detectados": [
+          "PUT"
+        ],
+        "longitud_desc": 670
+      },
+      {
+        "id": 1177777,
+        "title": "Validacion de reglas de negocio y manejo de seguimiento inexistente en la respuesta a reiteracion",
+        "state": "New",
+        "assigned_to": "Hamilton Tabares Villada",
+        "created_by": "Andres Felipe Contreras Muñoz",
+        "created_date": "2026-06-17",
+        "tiene_descripcion": true,
+        "tiene_gherkin": true,
+        "tiene_endpoint": false,
+        "tiene_metodo_http": false,
+        "tiene_status_code": true,
+        "tiene_payload_json": false,
+        "endpoints_detectados": [],
+        "metodos_detectados": [],
+        "longitud_desc": 997
+      }
+    ]
+  }
+}

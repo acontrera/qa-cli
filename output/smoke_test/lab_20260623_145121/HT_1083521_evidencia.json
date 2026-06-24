@@ -1,0 +1,28 @@
+{
+  "ht_id": 1083521,
+  "nombre": "Reiteracion Respuesta Prestacion - PUT",
+  "ambiente": "lab",
+  "timestamp": "2026-06-23T14:51:26.251905",
+  "request": {
+    "method": "PUT",
+    "url": "https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/reiteraciones/respuestas",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-apikey": "***",
+      "Business-Line": "860005114"
+    },
+    "body": {
+      "idSeguimientoFacturaGlosa": 1,
+      "idSeguimientoTipoCodigoGlosaReiteracionRespuesta": "RE9602",
+      "observacionReiteracionRespuesta": "La reiteracion ha sido evaluada y se acepta parcialmente el ajuste solicitado",
+      "fechaFormulacionGlosaReiteracionRespuesta": "2026-04-16T14:00:00Z"
+    }
+  },
+  "response": {
+    "status_code": 200,
+    "duracion_ms": 762,
+    "body": "{\"idSeguimientoFacturaGlosa\":1}",
+    "error": null
+  },
+  "resultado": "[OK 200]"
+}

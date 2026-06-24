@@ -1,0 +1,22 @@
+{
+  "ht_id": 1083516,
+  "nombre": "Integrador Activador - Inicio Glosas",
+  "ambiente": "lab",
+  "timestamp": "2026-06-23T14:51:21.876513",
+  "request": {
+    "method": "POST",
+    "url": "https://api.labsura.com/siifaintegrador/v1/integradores-glosas/facturas/proceso?proceso=glosa",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-apikey": "***"
+    },
+    "body": null
+  },
+  "response": {
+    "status_code": 200,
+    "duracion_ms": 845,
+    "body": "{\"statusCode\":200,\"status\":\"SUCCESS\",\"message\":\"Proceso GLOSA completado exitosamente.\",\"timestamp\":\"2026-06-23T19:51:21.737209969Z\"}",
+    "error": null
+  },
+  "resultado": "[OK 200]"
+}

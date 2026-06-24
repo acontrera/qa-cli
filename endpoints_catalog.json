@@ -1,0 +1,91 @@
+{
+    "ambientes": {
+        "dev": {
+            "nombre": "Desarrollo",
+            "host": "apiinternal.dllosura.com",
+            "requiere_vpn": true,
+            "apikey_env": "SURA_APIKEY_DEV"
+        },
+        "lab": {
+            "nombre": "Laboratorio",
+            "host": "api.labsura.com",
+            "requiere_vpn": false,
+            "apikey_env": "SURA_APIKEY_LAB"
+        }
+    },
+    "mapeos": {
+        "1083516": {
+            "nombre": "Integrador Activador - Inicio Glosas",
+            "method": "POST",
+            "path": "/siifaintegrador/v1/integradores-glosas/facturas/proceso",
+            "query_params": {"proceso": "glosa"},
+            "headers_extra": {},
+            "body": null,
+            "expected_status_pass": [200, 201, 202]
+        },
+        "1083517": {
+            "nombre": "Seguimiento Factura Glosa EPS",
+            "method": "POST",
+            "path": "/siifaintegrador/v1/facturas-glosas/seguimientos",
+            "query_params": {},
+            "headers_extra": {"Business-Line": "890903790"},
+            "body": {
+                "idFactura": 118524656,
+                "idSeguimientoTipoCodigoGlosa": "AU0201",
+                "fechaFormulacion": "2026-02-10T10:30:00Z"
+            },
+            "expected_status_pass": [200, 201]
+        },
+        "1083518": {
+            "nombre": "Respuesta Prestacion - PUT",
+            "method": "PUT",
+            "path": "/siifaintegrador/v1/facturas-glosas/seguimientos/respuestas",
+            "query_params": {},
+            "headers_extra": {"Business-Line": "860005114"},
+            "body": {
+                "idSeguimientoFacturaGlosa": 5280,
+                "idSeguimientoTipoCodigoRespuesta": "RE9502",
+                "fechaRespuesta": "2026-04-15T14:00:00Z",
+                "observacionRespuesta": "La glosa ha sido aceptada y se procedera con el ajuste correspondiente"
+            },
+            "expected_status_pass": [200]
+        },
+        "1083519": {
+            "nombre": "Reiteracion EPS - PUT",
+            "method": "PUT",
+            "path": "/siifaintegrador/v1/facturas-glosas/seguimientos/reiteraciones",
+            "query_params": {},
+            "headers_extra": {"Business-Line": "890903790"},
+            "body": {
+                "idSeguimientoFacturaGlosa": 1,
+                "idSeguimientoTipoCodigoGlosaReiteracion": "GRE003",
+                "fechaFormulacionGlosaReiteracion": "2026-04-15T10:00:00Z",
+                "observacionReiteracion": "Se reitera la glosa debido a que persiste la inconsistencia en la documentacion"
+            },
+            "expected_status_pass": [200]
+        },
+        "1083520": {
+            "nombre": "ByIdFactura EPS - GET (Reconciliacion)",
+            "method": "GET",
+            "path": "/siifaintegrador/v1/facturas-glosas/seguimientos/118524656",
+            "query_params": {},
+            "headers_extra": {"Business-Line": "860005114"},
+            "body": null,
+            "expected_status_pass": [200]
+        },
+        "1083521": {
+            "nombre": "Reiteracion Respuesta Prestacion - PUT",
+            "method": "PUT",
+            "path": "/siifaintegrador/v1/facturas-glosas/seguimientos/reiteraciones/respuestas",
+            "query_params": {},
+            "headers_extra": {"Business-Line": "860005114"},
+            "body": {
+                "idSeguimientoFacturaGlosa": 1,
+                "idSeguimientoTipoCodigoGlosaReiteracionRespuesta": "RE9602",
+                "observacionReiteracionRespuesta": "La reiteracion ha sido evaluada y se acepta parcialmente el ajuste solicitado",
+                "fechaFormulacionGlosaReiteracionRespuesta": "2026-04-16T14:00:00Z"
+            },
+            "expected_status_pass": [200]
+        }
+    }
+}

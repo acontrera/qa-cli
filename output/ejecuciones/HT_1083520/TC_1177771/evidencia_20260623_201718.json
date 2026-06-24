@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "tc_id": 1177771,
+    "tc_title": "Denegación de consulta cuando el token o los roles no están autorizados",
+    "ht_id": 1083520,
+    "ejecutor": "Hamilton tabares",
+    "ambiente": "lab",
+    "timestamp": "2026-06-23T20:17:18.573044",
+    "fecha_legible": "23/06/2026 20:17:18"
+  },
+  "request": {
+    "method": "GET",
+    "url": "https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/118524656",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-apikey": "***",
+      "Business-Line": "860005114"
+    },
+    "body": null
+  },
+  "response": {
+    "status_code": 200,
+    "duracion_ms": 817,
+    "body": "{\"paginaActual\":1,\"registrosPorPagina\":10,\"totalRegistros\":33,\"totalPaginas\":4,\"resultado\":[{\"idSeguimientoFacturaGlosa\":1774460,\"idFactura\":118524656,\"idConsulta\":null,\"idHospitalizacion\":null,\"idMedicamento\":null,\"idOtroServicio\":null,\"idProcedimiento\":null,\"idRecienNacido\":null,\"idUrgencia\":null,\"idUsuario\":null,\"valorGlosa\":null,\"observacion\":\"PENTEST-SSTI\",\"idSeguimientoTipoCodigoGlosa\":\"AU0201\",\"descripcionSeguimientoTipoCodigoGlosa\":\"El número de consultas, interconsultas o atenciones (visitas) domiciliarias que vienen relacionadas en la factura de venta presenta diferencia con las autorizadas.\",\"fechaFormulacion\":\"2026-02-10T10:30:00\",\"fechaReporte\":\"2026-05-04T15:41:59.083\",\"usuarioReporte\":\"1923544f-f09c-4ec5-93c0-aaa08ba72652\",\"codigoSeguimientoInterno\":null,\"idSeguimientoTipoCodigoRespuesta\":null,\"descripcionSeguimientoTipoCodigoRespuesta\":null,\"observacionRespuesta\":null,\"fechaRespuesta\":null,\"usuarioReporteRespuesta\":null,\"fechaReporteRespuesta\":null,\"idSeguimientoTipoCodigoGlosaReiteracion\":null,\"descripcionSeguimientoTipoCodigoGlosaReiteracion\":null,\"observacionReiteracion\":null,\"fechaFormulacionGlosaReiteracion\":null,\"fechaReporteGlosaReiteracion\":null,\"usuarioReporteGlosaReiteracion\":null,\"idSeguimientoTipoCodigoGlosaReiteracionRespuesta\":null,\"descripcionSeguimientoTipoCodigoGlosaReiteracionRespuesta\":null,\"observacionReiteracionRespuesta\":null,\"fechaFormulacionGlosaReiteracionRespuesta\":null,\"fechaReporteGlosaReiteracionRespuesta\":null,\"usuarioReporteGlosaReiteracionRespuesta\":null,\"idSeguimientoTipoCodigoGlosaDecisionFinal\":null,\"descripcionSeguimientoTipoCodigoGlosaDecisionFinal\":null,\"observacionDecisionFinal\":null,\"fechaFormulacionDecisionFinal\":null,\"usuarioReporteGlosaDecisionFinal\":null,\"fechaReporteGlosaDecisionFinal\":null,\"anexo\":\"Factura\"},{\"idSeguimientoFacturaGlosa\":1774459,\"idFactura\":118524656,\"idConsulta\":null,\"idHospitalizacion\":null,\"idMedicamento\":null,\"idOtroServicio\":null,\"idProcedimiento\":null,\"idRecienNacido\":null,\"idUrgencia\":null,\"idUsuario\":null,\"valorGlosa\":null,\"observacion\":\"PENTEST-SSTI\",\"idSeguimientoTipoCodigoGlosa\":\"AU0201\",\"descripcionSeguimientoTipoCodigoGlosa\":\"El número de consultas, interconsultas o atenciones (visitas) domiciliarias que vienen relacionadas en la factura de venta presenta diferencia con las autorizadas.\",\"fechaFormulacion\":\"2026-02-10T10:30:00\",\"fechaReporte\":\"2026-05-04T15:39:04.22\",\"usuarioReporte\":\"1923544f-f09c-4ec5-93c0-aaa08ba72652\",\"codigoSeguimientoInterno\":null,\"idSeguimientoTipoCodigoRespuesta\":null,\"descripcionSeguimientoTipoCodigoRespuesta\":null,\"observacionRespuesta\":null,\"fechaRespuesta\":null,\"usuarioReporteRespuesta\":null,\"fechaReporteRespuesta\":null,\"idSeguimientoTipoCodigoGlosaReiteracion\":null,\"descripcionSeguimientoTipoCodigoGlosaReiteracion\":null,\"observacionReiteracion\":null,\"fechaFormulacionGlosaReiteracion\":null,\"fechaReporteGlosaReiteracion\":null,\"usuarioReporteGlosaReiteracion\":null,\"idSeguimientoTipoCodigoGlosaReiteracionRespuesta\":null,\"descripcionSeguimientoTipoCodigoGlosaReiteracionRespuesta\":null,\"observacionReiteracionRespuesta\":null,\"fechaFormulacionGlosaReiteracionRespuesta\":null,\"fechaReporteGlosaReiteracionRespuesta\":null,\"usuarioReporteGlosaReiteracionRespuesta\":null,\"idSeguimientoTipoCodigoGlosaDecisionFinal\":null,\"descripcionSeguimientoTipoCodigoGlosaDecisionFinal\":null,\"observacionDecisionFinal\":null,\"fechaFormulacionDecisionFinal\":null,\"usuarioReporteGlosaDecisionFinal\":null,\"fechaReporteGlosaDecisionFinal\":null,\"anexo\":\"Factura\"},{\"idSeguimientoFacturaGlosa\":1774458,\"idFactura\":118524656,\"idConsulta\":null,\"idHospitalizacion\":null,\"idMedicamento\":null,\"idOtroServicio\":null,\"idProcedimiento\":null,\"idRecienNacido\":null,\"idUrgencia\":null,\"idUsuario\":null,\"valorGlosa\":null,\"observacion\":\"PENTEST-SSTI\",\"idSeguimientoTipoCodigoGlosa\":\"AU0201\",\"descripcionSeguimientoTipoCodigoGlosa\":\"El número de consultas, interconsultas o atenciones (visitas) domiciliarias que vienen relacionadas en la factura de venta presenta diferencia con las autorizadas.\",\"fechaFormulacion\":\"2026-02-10T10:30:00\",\"fechaReporte\":\"2026-05-04T15:27:19.19\",\"usuarioReporte\":\"1923544f-f09c-4ec5-93c0-aaa08ba72652\",\"codigoSeguimientoInterno\":null,\"idSeguimientoTipoCodigoRespuesta\":null,\"descripcionSeguimientoTipoCodigoRespuesta\":null,\"observacionRespuesta\":null,\"fechaRespuesta\":null,\"usuarioReporteRespuesta\":null,\"fechaReporteRespuesta\":null,\"idSeguimientoTipoCodigoGlosaReiteracion\":null,\"descripcionSeguimientoTipoCodigoGlosaReiteracion\":null,\"observacionReiteracion\":null,\"fechaFormulacionGlosaReiteracion\":null,\"fechaReporteGlosaReiteracion\":null,\"usuarioReporteGlosaReiteracion\":null,\"idSeguimientoTipoCodigoGlosaReiteracionRespuesta\":\"RE9602\",\"descripcionSeguimientoTipoCodigoGlosaReiteracionRespuesta\":\"El PSS o PTS aporta a la ERP la evidencia que demuestra que la glosa es injustificada al 100%.\",\"observacionReiteracionRespuesta\":\"test\",\"fechaFormulacionGlosaReiteracionRespuesta\":\"2026-04-16T14:00:00\",\"fechaReporteGlosaReiteracionRespues",
+    "body_full_length": 17645,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "date": "Wed, 24 Jun 2026 01:17:18 GMT",
+      "cache-control": "no-store",
+      "x-frame-options": "DENY",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "x-content-type-options": "nosniff",
+      "request-context": "appId=cid-v1:2156ef92-866c-4e6e-a5b7-16e25463a3e9",
+      "set-cookie": "cookiesession1=678A3E7E77865E1A0B5B4B3461D7E6A2;Expires=Thu; Secure; HttpOnly; SameSite=Strict; Secure; HttpOnly; SameSite=Strict",
+      "x-permitted-cross-domain-policies": "none",
+      "pragma": "no-cache",
+      "x-xss-protection": "1; mode=block",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "Content-Length": "17660",
+      "content-security-policy": "base-uri 'self'; default-src 'self'; script-src 'self'; img-src 'self'; connect-src 'self'",
+      "permissions-policy": "geolocation=(), microphone=(), camera=()",
+      "x-request-id": "0a826a3a-46d5-4858-a683-d75bd1962f61",
+      "via": "1.1 google",
+      "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+    },
+    "error": null
+  },
+  "expected": {
+    "status_pass": [
+      200
+    ],
+    "tiempo_max_ms": 3000
+  },
+  "validaciones": [
+    {
+      "nombre": "Conexion al endpoint",
+      "esperado": "Sin errores de red/timeout",
+      "obtenido": "Conexion exitosa",
+      "paso": true
+    },
+    {
+      "nombre": "HTTP Status esperado",
+      "esperado": "En [200]",
+      "obtenido": "200",
+      "paso": true
+    },
+    {
+      "nombre": "Tiempo de respuesta < 3000ms",
+      "esperado": "< 3000ms",
+      "obtenido": "817ms",
+      "paso": true
+    },
+    {
+      "nombre": "Response es JSON valido",
+      "esperado": "JSON parseable",
+      "obtenido": "JSON valido",
+      "paso": true
+    },
+    {
+      "nombre": "Response body no vacio",
+      "esperado": "Body con contenido",
+      "obtenido": "17645 caracteres totales",
+      "paso": true
+    }
+  ],
+  "resultado_global": "PASS"
+}

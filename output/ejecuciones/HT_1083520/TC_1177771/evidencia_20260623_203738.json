@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "tc_id": 1177771,
+    "tc_title": "Denegación de consulta cuando el token o los roles no están autorizados",
+    "ht_id": 1083520,
+    "ejecutor": "andres tabares",
+    "ambiente": "lab",
+    "escenario": "auth_invalid",
+    "descripcion_caso": "Denegacion de consulta cuando el token o roles no estan autorizados",
+    "timestamp": "2026-06-23T20:37:38.618905",
+    "fecha_legible": "23/06/2026 20:37:38",
+    "version_ejecutor": "v3.0"
+  },
+  "request": {
+    "method": "GET",
+    "url": "https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/118524656",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-apikey": "***",
+      "Business-Line": "860005114"
+    },
+    "body": null,
+    "escenario": "auth_invalid"
+  },
+  "response": {
+    "status_code": 401,
+    "duracion_ms": 515,
+    "body": "\n    {\n      \"errors\" : [\n        {\n          \"id\" : \"Authentication-001\",\n          \"type\" : \"Error de Autenticación\",\n          \"message\" : \"Credencial faltante o incorrecta\",\n          \"detail\" : \"La credencial enviada en la petición no es correcta o no fue enviada. Revise que la credencial esté siendo enviada correctamente donde corresponde\"\n        }\n      ]\n    }\n    ",
+    "body_full_length": 376,
+    "headers": {
+      "content-type": "application/json",
+      "x-frame-options": "DENY",
+      "x-xss-protection": "1; mode=block",
+      "content-security-policy": "base-uri 'self'; default-src 'self'; script-src 'self'; img-src 'self'; connect-src 'self'",
+      "x-content-type-options": "nosniff",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "geolocation=(), microphone=(), camera=()",
+      "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+      "set-cookie": "; Secure; HttpOnly; SameSite=Strict",
+      "x-request-id": "615361fc-3197-4562-852d-db1bd9ed1769",
+      "Content-Length": "379",
+      "date": "Wed, 24 Jun 2026 01:37:38 GMT",
+      "via": "1.1 google",
+      "Alt-Svc": "h3=\":443\"; ma=2592000"
+    },
+    "error": null
+  },
+  "validaciones": [
+    {
+      "nombre": "Conexion al endpoint",
+      "esperado": "Sin errores de red",
+      "obtenido": "Conexion exitosa",
+      "paso": true
+    },
+    {
+      "nombre": "HTTP Status segun TC",
+      "esperado": "En [401, 403]",
+      "obtenido": "401",
+      "paso": true
+    },
+    {
+      "nombre": "Tiempo < 3000ms",
+      "esperado": "< 3000ms",
+      "obtenido": "515ms",
+      "paso": true
+    },
+    {
+      "nombre": "Response es JSON valido",
+      "esperado": "JSON parseable",
+      "obtenido": "JSON valido",
+      "paso": true
+    },
+    {
+      "nombre": "Body contiene alguno de ['unauthorized', 'forbidden', 'Invalid', 'denied']",
+      "esperado": "Cualquiera de ['unauthorized', 'forbidden', 'Invalid', 'denied']",
+      "obtenido": "No encontrado",
+      "paso": false
+    }
+  ],
+  "resultado_global": "FAIL"
+}

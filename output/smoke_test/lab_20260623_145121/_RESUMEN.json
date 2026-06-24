@@ -1,0 +1,60 @@
+{
+  "ambiente": "lab",
+  "timestamp": "2026-06-23T14:51:26.255776",
+  "estadisticas": {
+    "ok": 4,
+    "warn": 2,
+    "fail": 0,
+    "total": 6
+  },
+  "resultados": [
+    {
+      "ht_id": 1083516,
+      "nombre": "Integrador Activador - Inicio Glosas",
+      "estado": "[OK 200]",
+      "status": 200,
+      "ms": 845,
+      "error": null
+    },
+    {
+      "ht_id": 1083517,
+      "nombre": "Seguimiento Factura Glosa EPS",
+      "estado": "[WARN 400]",
+      "status": 400,
+      "ms": 560,
+      "error": null
+    },
+    {
+      "ht_id": 1083518,
+      "nombre": "Respuesta Prestacion - PUT",
+      "estado": "[OK 200]",
+      "status": 200,
+      "ms": 1348,
+      "error": null
+    },
+    {
+      "ht_id": 1083519,
+      "nombre": "Reiteracion EPS - PUT",
+      "estado": "[WARN 400]",
+      "status": 400,
+      "ms": 1046,
+      "error": null
+    },
+    {
+      "ht_id": 1083520,
+      "nombre": "ByIdFactura EPS - GET (Reconciliacion)",
+      "estado": "[OK 200]",
+      "status": 200,
+      "ms": 637,
+      "error": null
+    },
+    {
+      "ht_id": 1083521,
+      "nombre": "Reiteracion Respuesta Prestacion - PUT",
+      "estado": "[OK 200]",
+      "status": 200,
+      "ms": 762,
+      "error": null
+    }
+  ]
+}

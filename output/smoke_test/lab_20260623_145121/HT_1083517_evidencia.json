@@ -1,0 +1,27 @@
+{
+  "ht_id": 1083517,
+  "nombre": "Seguimiento Factura Glosa EPS",
+  "ambiente": "lab",
+  "timestamp": "2026-06-23T14:51:22.438256",
+  "request": {
+    "method": "POST",
+    "url": "https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-apikey": "***",
+      "Business-Line": "890903790"
+    },
+    "body": {
+      "idFactura": 118524656,
+      "idSeguimientoTipoCodigoGlosa": "AU0201",
+      "fechaFormulacion": "2026-02-10T10:30:00Z"
+    }
+  },
+  "response": {
+    "status_code": 400,
+    "duracion_ms": 560,
+    "body": "\n    {\"errors\":[{\"id\":\"TECH-001\",\"type\":\"Error Tecnico\",\"message\":\"Error en la solicitud\",\"detail\":\"Error de validación en la solicitud\",\"fields\":{\"codigoSeguimientoInterno\":[\"El campo es obligatorio\"]}}]}\n    ",
+    "error": null
+  },
+  "resultado": "[WARN 400]"
+}
