@@ -1,0 +1,18 @@
+{
+  "tc_id": 1177772,
+  "ht_id": 1083520,
+  "titulo": "Respuesta vacia cuando la factura radicada no tiene glosas registradas",
+  "escenario": "happy_path_empty",
+  "ambiente": "lab",
+  "ejecutor": "hamilton teste",
+  "timestamp": "2026-06-25T21:58:46.408332",
+  "feature_path": "C:\\Sura\\karate-glosas\\src\\test\\java\\sura\\glosas\\dinamicos\\tc_1177772.feature",
+  "feature_content": "Feature: TC #1177772 - HT #1083520 - Respuesta vacia cuando la factura radicada no tiene glosas registradas\n\n  Background:\n    * url 'https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/99999999'\n    * def apikeyValor = karate.properties['apikeyValida']\n\n  @tc1177772 @ht1083520 @happy_path_empty\n  Scenario: Respuesta vacia cuando la factura radicada no tiene glosas registradas\n\n    # ============================================================\n    # GHERKIN ORIGINAL DEL TC EN AZURE DEVOPS:\n    # ============================================================\n  # Feature: Determinar disponibilidad de nueva formulacion de glosa en reconciliacion tecnica \n  # Scenario: Factura existente sin registros de glosa devuelve lista vacia \n  #     Given que la factura existe en SIIFA y se encuentra radicada \n  #     And que no existen seguimientos de glosa asociados al IdFactura consultado \n  #     When el orquestador consume el proxy GET \"/api/SeguimientoFacturaGlosa/ByIdFactura\" \n  #     Then el sistema debe retornar HTTP 200 con lista de resultados vacia \n  #     And el Integrador debe poder determinar que puede iniciar una nueva formulacion de glosa sin duplicidad de reporte \n  #     And se debe persistir un log tecnico del resultado vacio para mantener consistencia en la trazabilidad local\n    # ============================================================\n\n    # Configuracion del request\n    * configure headers = { 'Content-Type': 'application/json', 'x-apikey': '#(apikeyValor)', 'Business-Line': '860005114' }\n\n    # Ejecucion\n    * method GET\n\n    # Validaciones\n    * print 'Status:', responseStatus\n    * print 'Tiempo:', responseTime + 'ms'\n    * def statusValidos = [200, 204, 404]\n    * assert statusValidos.indexOf(responseStatus) >= 0\n    * assert responseTime < 3000\n    * print '[TC #1177772] PASS - status:', responseStatus\n",
+  "karate_result": {
+    "exit_code": 1,
+    "duracion_ms": 73,
+    "stdout": "",
+    "stderr": "The JAVA_HOME environment variable is not defined correctly, \nthis environment variable is needed to run this program. \n",
+    "paso": false
+  }
+}

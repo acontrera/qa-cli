@@ -30,8 +30,6 @@ from pathlib import Path
 
 import requests
 
-from generador_karate import generar_feature_karate
-
 # ============================================================
 # CONFIGURACION
 # ============================================================
@@ -715,32 +713,9 @@ def procesar_tc(tc, tc_config, ambiente_key, ambiente_config, ejecutor,
     nombre_attachment = archivo_evidencia.name
     attachment_url, err = subir_attachment(archivo_evidencia)
     if attachment_url and vincular_attachment(tc_id, attachment_url, nombre_attachment):
-        print(f"        [OK] Attachment evidencia vinculado")
+        print(f"        [OK] Attachment vinculado")
     else:
-        print(f"        [WARN] Attachment evidencia: {err}")
-
-    # ============================================================
-    # NUEVO v3.1: Generar y subir .feature Karate como entregable
-    # ============================================================
-    try:
-        karate_output_dir = Path("output") / "karate_features" / f"HT_{padre_id}"
-        feature_path = generar_feature_karate(
-            tc=tc,
-            tc_config=tc_config,
-            ambiente_config=ambiente_config,
-            ht_id=padre_id,
-            datos_prueba=CATALOGO.get("datos_prueba", {}),
-            output_dir=karate_output_dir
-        )
-        print(f"        [KARATE] Feature generado: {feature_path.name}")
-
-        feature_url, feature_err = subir_attachment(feature_path)
-        if feature_url and vincular_attachment(tc_id, feature_url, feature_path.name):
-            print(f"        [OK] .feature Karate vinculado al TC")
-        else:
-            print(f"        [WARN] No se pudo subir .feature: {feature_err}")
-    except Exception as e:
-        print(f"        [WARN] Error generando .feature Karate: {e}")
+        print(f"        [WARN] Attachment: {err}")
 
     if agregar_comentario(tc_id, construir_comentario(evidencia, nombre_attachment)):
         print(f"        [OK] Comentario agregado")

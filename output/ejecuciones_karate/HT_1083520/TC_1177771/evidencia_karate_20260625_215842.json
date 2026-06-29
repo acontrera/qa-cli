@@ -1,0 +1,18 @@
+{
+  "tc_id": 1177771,
+  "ht_id": 1083520,
+  "titulo": "Denegación de consulta cuando el token o los roles no están autorizados",
+  "escenario": "auth_invalid",
+  "ambiente": "lab",
+  "ejecutor": "hamilton teste",
+  "timestamp": "2026-06-25T21:58:42.399621",
+  "feature_path": "C:\\Sura\\karate-glosas\\src\\test\\java\\sura\\glosas\\dinamicos\\tc_1177771.feature",
+  "feature_content": "Feature: TC #1177771 - HT #1083520 - Denegación de consulta cuando el token o los roles no están autorizados\n\n  Background:\n    * url 'https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/118524656'\n    * def apikeyValor = 'INVALID_KEY_FOR_TESTING_ONLY'\n\n  @tc1177771 @ht1083520 @auth_invalid\n  Scenario: Denegación de consulta cuando el token o los roles no están autorizados\n\n    # ============================================================\n    # GHERKIN ORIGINAL DEL TC EN AZURE DEVOPS:\n    # ============================================================\n  # Feature: Proteger el acceso al proxy de seguimiento de glosas para ERP EPS \n  # Scenario: Rechazo de la operacion por autenticacion o autorizacion invalida \n  #     Given que el endpoint GET \"/api/SeguimientoFacturaGlosa/ByIdFactura\" es de acceso restringido para la ERP \n  #     And que la solicitud se realiza sin Bearer Token valido o con un usuario sin roles SIIFA_Admin, SIIFA_ERP, SIIFA_ERP_Gestor o SIIFA_ERP_Consulta \n  #     When el Integrador invoca el proxy de reconciliacion con IdFactura \n  #     Then el proxy debe denegar la operacion y propagar HTTP 401 cuando no exista autenticacion valida \n  #     And el proxy debe propagar HTTP 403 cuando el usuario autenticado no tenga permisos de rol \n  #     And se debe persistir un log tecnico de transaccion fallida con el motivo de rechazo para trazabilidad\n    # ============================================================\n\n    # Configuracion del request\n    * configure headers = { 'Content-Type': 'application/json', 'x-apikey': '#(apikeyValor)', 'Business-Line': '860005114' }\n\n    # Ejecucion\n    * method GET\n\n    # Validaciones\n    * print 'Status:', responseStatus\n    * print 'Tiempo:', responseTime + 'ms'\n    * def statusValidos = [401, 403]\n    * assert statusValidos.indexOf(responseStatus) >= 0\n    * assert responseTime < 3000\n    * def opciones = [\"Credencial\", \"Authentication\", \"Autenticaci\\u00f3n\", \"Autorizaci\\u00f3n\", \"unauthorized\", \"forbidden\", \"Invalid\", \"denied\", \"incorrecta\", \"faltante\"]\n    * def responseStr = (response + '').toLowerCase()\n    * def encontrado = opciones.find(opt => responseStr.indexOf(opt.toLowerCase()) >= 0)\n    * assert encontrado != null\n    * print '[TC #1177771] PASS - status:', responseStatus\n",
+  "karate_result": {
+    "exit_code": 1,
+    "duracion_ms": 37,
+    "stdout": "",
+    "stderr": "The JAVA_HOME environment variable is not defined correctly, \nthis environment variable is needed to run this program. \n",
+    "paso": false
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "tc_id": 1177770,
+  "ht_id": 1083520,
+  "titulo": "Consulta exitosa de seguimientos de glosa con filtros técnicos por IdFactura",
+  "escenario": "happy_path",
+  "ambiente": "lab",
+  "ejecutor": "hamilton teste",
+  "timestamp": "2026-06-25T21:58:36.292215",
+  "feature_path": "C:\\Sura\\karate-glosas\\src\\test\\java\\sura\\glosas\\dinamicos\\tc_1177770.feature",
+  "feature_content": "Feature: TC #1177770 - HT #1083520 - Consulta exitosa de seguimientos de glosa con filtros técnicos por IdFactura\n\n  Background:\n    * url 'https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/118524656'\n    * def apikeyValor = karate.properties['apikeyValida']\n\n  @tc1177770 @ht1083520 @happy_path\n  Scenario: Consulta exitosa de seguimientos de glosa con filtros técnicos por IdFactura\n\n    # ============================================================\n    # GHERKIN ORIGINAL DEL TC EN AZURE DEVOPS:\n    # ============================================================\n  # Feature: Consultar historial de glosas para reconciliacion tecnica en SIIFA \n  # Scenario: Respuesta paginada exitosa con campos de trazabilidad y filtros opcionales \n  #     Given que el Componente Integrador SIIFA consume el proxy GET \"/api/SeguimientoFacturaGlosa/ByIdFactura\" con una factura previamente radicada \n  #     And que la peticion incluye el parametro obligatorio IdFactura y los filtros opcionales TieneRespuesta, IdSeguimientoTipoCodigoGlosa y Observacion \n  #     When el proxy orquesta la consulta hacia el servicio institucional de seguimiento de glosas \n  #     Then el sistema debe retornar HTTP 200 con una lista paginada de seguimientos de glosa asociados a la factura \n  #     And cada registro debe incluir idSeguimientoFacturaGlosa, codigo de glosa, valor, fecha de formulacion y estado de respuesta \n  #     And la respuesta debe contener unicamente los registros que cumplan los filtros tecnicos enviados \n  #     And se debe persistir un log tecnico de transaccion exitosa para el informe de trazabilidad de cuentas medicas\n    # ============================================================\n\n    # Configuracion del request\n    * configure headers = { 'Content-Type': 'application/json', 'x-apikey': '#(apikeyValor)', 'Business-Line': '860005114' }\n\n    # Ejecucion\n    * method GET\n\n    # Validaciones\n    * print 'Status:', responseStatus\n    * print 'Tiempo:', responseTime + 'ms'\n    * def statusValidos = [200]\n    * assert statusValidos.indexOf(responseStatus) >= 0\n    * assert responseTime < 3000\n    * match response + '' contains 'resultado'\n    * print '[TC #1177770] PASS - status:', responseStatus\n",
+  "karate_result": {
+    "exit_code": 1,
+    "duracion_ms": 30,
+    "stdout": "",
+    "stderr": "The JAVA_HOME environment variable is not defined correctly, \nthis environment variable is needed to run this program. \n",
+    "paso": false
+  }
+}

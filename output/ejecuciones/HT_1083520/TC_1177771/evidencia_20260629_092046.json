@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "tc_id": 1177771,
+    "tc_title": "Denegación de consulta cuando el token o los roles no están autorizados",
+    "ht_id": 1083520,
+    "ejecutor": "hamilton contreras",
+    "ambiente": "lab",
+    "escenario": "auth_invalid",
+    "descripcion_caso": "Denegacion de consulta cuando el token o roles no estan autorizados",
+    "timestamp": "2026-06-29T09:20:46.987668",
+    "fecha_legible": "29/06/2026 09:20:46",
+    "version_ejecutor": "v3.0"
+  },
+  "request": {
+    "method": "GET",
+    "url": "https://api.labsura.com/siifaintegrador/v1/facturas-glosas/seguimientos/118524656",
+    "headers": {
+      "Content-Type": "application/json",
+      "x-apikey": "***",
+      "Business-Line": "860005114"
+    },
+    "body": null,
+    "escenario": "auth_invalid"
+  },
+  "response": {
+    "status_code": null,
+    "duracion_ms": 0,
+    "body": "[DRY-RUN]",
+    "body_full_length": 9,
+    "headers": {},
+    "error": null
+  },
+  "validaciones": [],
+  "resultado_global": "FAIL"
+}
